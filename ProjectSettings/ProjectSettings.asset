@@ -4,14 +4,14 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 14
-  productGUID: 79913cf068b10453f8c0f1c96b85b838
+  productGUID: c9df08f1abb274088b854b89a7d16e62
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: TiltedShedJam
   productName: SamuraiBlacksmith
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -460,7 +460,7 @@ PlayerSettings:
   ps4DownloadDataSize: 0
   ps4GarlicHeapSize: 2048
   ps4ProGarlicHeapSize: 2560
-  ps4Passcode: RhRXdCdG5nG5azdNMK66MuCV6GXi5xr8
+  ps4Passcode: QzldVI5ZuGXbEWRK5RhRXdCdG5nG5azd
   ps4pnSessions: 1
   ps4pnPresence: 1
   ps4pnFriends: 1
@@ -506,7 +506,7 @@ PlayerSettings:
   psp2LiveAreaTrialPath: 
   psp2PatchChangeInfoPath: 
   psp2PatchOriginalPackage: 
-  psp2PackagePassword: 4P2R391UXaLHbavJvFZGfO47XWS2qVOw
+  psp2PackagePassword: NMK66MuCV6GXi5xr84P2R391UXaLHbav
   psp2KeystoneFile: 
   psp2MemoryExpansionMode: 0
   psp2DRMType: 0
@@ -636,9 +636,9 @@ PlayerSettings:
   cloudServicesEnabled: {}
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: b380c6d4-de3c-4321-8a91-93d198299beb
+  projectName: SamuraiBlacksmith (1)
+  organizationId: sharkapps
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
