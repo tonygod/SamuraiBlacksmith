@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 612021912}
-  rate: 100
+  rate: 31
 --- !u!114 &612021912
 MonoBehaviour:
   m_ObjectHideFlags: 0
