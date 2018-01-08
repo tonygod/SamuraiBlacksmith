@@ -204,7 +204,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 612021912}
+<<<<<<< HEAD
   rate: 31
+=======
+  rate: 30
+>>>>>>> master
 --- !u!114 &612021912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,13 +361,16 @@ MonoBehaviour:
     type: 2}
   weaponStage3: {fileID: 1861737709472204, guid: 10854c6d57c1746c0a0ce0a4817bf5bd,
     type: 2}
-  spawnRate: 1
+  spawnRate1: 1
+  spawnRate2: 0.85
+  spawnRate3: 0.75
   minX: -0.8
   maxX: 0.8
   minZ: -0.2
   maxZ: 0.2
   yPosition: 0.15
   numberOfStrikes: 30
+  progressBar: {fileID: 612021911}
 --- !u!4 &1002569138
 Transform:
   m_ObjectHideFlags: 0
