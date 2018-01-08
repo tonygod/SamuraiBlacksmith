@@ -8,27 +8,51 @@ public class StrikePointSpawner : MonoBehaviour
     public GameObject strikePointPrefab;
     public GameObject strikeFXPrefab;
 
+    public Transform weaponTransform;
+    public GameObject weaponStage1;
+    public GameObject weaponStage2;
+    public GameObject weaponStage3;
+
     public float spawnRate = 1.0f; // in seconds
     public float minX = -0.5f;
     public float maxX = 0.5f;
-    public float minY = -0.5f;
-    public float maxY = 0.5f;
-    public float zPosition = 0.5f;
+    public float minZ = -0.5f;
+    public float maxZ = 0.5f;
+    public float yPosition = 0.5f;
 
     public int numberOfStrikes = 30;
+
+    private GameObject weapon;
 
     private GameObject lastSpawned;
     private int strikesRemaining;
 
+    private int hits;
+    private int misses;
+    private int skips;
+
+    private enum weaponStages { phase1, phase2, phase3 }
+
+    private weaponStages weaponStage;
 
     public void Start()
     {
+        StartNewWeapon();
         StartSpawning();
+    }
+
+    private void StartNewWeapon()
+    {
+        weapon = Instantiate(weaponStage1, weaponTransform.position, weaponTransform.rotation);
     }
 
 
     public void StartSpawning()
     {
+        hits = 0;
+        misses = 0;
+        skips = 0;
+        weaponStage = weaponStages.phase1;
         StartCoroutine(SpawnStrikePoint());
     }
 
@@ -40,8 +64,8 @@ public class StrikePointSpawner : MonoBehaviour
         while (strikesRemaining >= 0)
         {
             float x = Random.Range(minX, maxX);
-            float y = Random.Range(minY, maxY);
-            Vector3 randPosition = new Vector3(x, y, zPosition);
+            float z = Random.Range(minZ, maxZ);
+            Vector3 randPosition = new Vector3(x, yPosition, z);
             lastSpawned = Instantiate(strikePointPrefab, randPosition, Quaternion.identity);
 
             yield return new WaitForSeconds(spawnRate);
@@ -49,9 +73,24 @@ public class StrikePointSpawner : MonoBehaviour
             {
                 Debug.Log("Player SKIPPED last StrikePoint");
                 DestroyObject(lastSpawned);
+                skips++;
                 // progress bar penalty
             }
             strikesRemaining--;
+            float pctLeft = ((float)strikesRemaining / (float)numberOfStrikes) * 100f;
+            Debug.Log("pctLeft=" + pctLeft);
+            if ( pctLeft < 33f && weaponStage == weaponStages.phase2 )
+            {
+                Destroy(weapon);
+                weaponStage = weaponStages.phase3;
+                weapon = Instantiate(weaponStage3, weaponTransform.position, weaponTransform.rotation);
+            }
+            else if ( pctLeft < 66f && weaponStage == weaponStages.phase1 )
+            {
+                Destroy(weapon);
+                weaponStage = weaponStages.phase2;
+                weapon = Instantiate(weaponStage2, weaponTransform.position, weaponTransform.rotation);
+            }
         }
     }
 
@@ -73,6 +112,7 @@ public class StrikePointSpawner : MonoBehaviour
                 {
                     Debug.Log("Player MISSED last StrikePoint");
                     // progress bar penalty
+                    misses++;
                 }
             }
         }
@@ -86,6 +126,7 @@ public class StrikePointSpawner : MonoBehaviour
         lastSpawned = null;
         Debug.Log("Player HIT last StrikePoint");
         // no progress bar penalty
+        hits++;
     }
 
 
