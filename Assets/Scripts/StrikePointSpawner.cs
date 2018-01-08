@@ -1,26 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StrikePointSpawner : MonoBehaviour
 {
 
+    [Header("Prefabs")]
     public GameObject strikePointPrefab;
     public GameObject strikeFXPrefab;
 
+    [Header("Weapon")]
     public Transform weaponTransform;
     public GameObject weaponStage1;
     public GameObject weaponStage2;
     public GameObject weaponStage3;
 
-    public float spawnRate = 1.0f; // in seconds
+    [Space]
+    [Header("Spawn Rates")]
+    public float spawnRate1 = 1.5f;
+    public float spawnRate2 = 1.0f;
+    public float spawnRate3 = 0.75f;
+
+    [Space]
+    [Header("Spawn Boundaries")]
     public float minX = -0.5f;
     public float maxX = 0.5f;
     public float minZ = -0.5f;
     public float maxZ = 0.5f;
     public float yPosition = 0.5f;
 
+    [Space]
     public int numberOfStrikes = 30;
+    public ProgressBar progressBar;
+
+    public Text hitText;
+    public Text missText;
 
     private GameObject weapon;
 
@@ -52,7 +67,15 @@ public class StrikePointSpawner : MonoBehaviour
         hits = 0;
         misses = 0;
         skips = 0;
+
+        hitText.text = hits.ToString();
+        missText.text = misses.ToString();
+
         weaponStage = weaponStages.phase1;
+        float strikes = numberOfStrikes / 3;
+        float totalTime = spawnRate1 * strikes + spawnRate2 * strikes + spawnRate3 * strikes;
+        Debug.Log("totalTime=" + totalTime);
+        progressBar.rate = totalTime;
         StartCoroutine(SpawnStrikePoint());
     }
 
@@ -60,6 +83,7 @@ public class StrikePointSpawner : MonoBehaviour
     IEnumerator SpawnStrikePoint()
     {
         strikesRemaining = numberOfStrikes;
+        float spawnRate = spawnRate1;
 
         while (strikesRemaining >= 0)
         {
@@ -68,12 +92,19 @@ public class StrikePointSpawner : MonoBehaviour
             Vector3 randPosition = new Vector3(x, yPosition, z);
             lastSpawned = Instantiate(strikePointPrefab, randPosition, Quaternion.identity);
 
+            if (weaponStage == weaponStages.phase2)
+                spawnRate = spawnRate2;
+            else if (weaponStage == weaponStages.phase3)
+                spawnRate = spawnRate3;
             yield return new WaitForSeconds(spawnRate);
+
             if (lastSpawned)
             {
                 Debug.Log("Player SKIPPED last StrikePoint");
                 DestroyObject(lastSpawned);
                 skips++;
+                misses++;
+                missText.text = misses.ToString();
                 // progress bar penalty
             }
             strikesRemaining--;
@@ -113,6 +144,7 @@ public class StrikePointSpawner : MonoBehaviour
                     Debug.Log("Player MISSED last StrikePoint");
                     // progress bar penalty
                     misses++;
+                    missText.text = misses.ToString();
                 }
             }
         }
@@ -127,6 +159,8 @@ public class StrikePointSpawner : MonoBehaviour
         Debug.Log("Player HIT last StrikePoint");
         // no progress bar penalty
         hits++;
+        hitText.text = hits.ToString();
+
     }
 
 
