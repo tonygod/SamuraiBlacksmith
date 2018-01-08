@@ -350,6 +350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strikePointPrefab: {fileID: 1087407978756464, guid: cdc2881c7fb7e43afbb7d99dc8362893,
     type: 2}
+  strikeFXPrefab: {fileID: 1174436350745446, guid: 7c538dac42bea43a680a0b52dca41118,
+    type: 2}
   spawnRate: 1
   minX: -0.5
   maxX: 0.5

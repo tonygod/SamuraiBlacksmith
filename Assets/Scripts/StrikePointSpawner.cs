@@ -6,6 +6,7 @@ public class StrikePointSpawner : MonoBehaviour
 {
 
     public GameObject strikePointPrefab;
+    public GameObject strikeFXPrefab;
 
     public float spawnRate = 1.0f; // in seconds
     public float minX = -0.5f;
@@ -80,9 +81,17 @@ public class StrikePointSpawner : MonoBehaviour
 
     public void PlayerStrike()
     {
+        ShowSparks(lastSpawned.transform.position);
         Destroy(lastSpawned);
         lastSpawned = null;
         Debug.Log("Player HIT last StrikePoint");
         // no progress bar penalty
+    }
+
+
+    private void ShowSparks(Vector3 position)
+    {
+        GameObject fx = Instantiate(strikeFXPrefab, position, Quaternion.identity);
+        Destroy(fx, 2.0f);
     }
 }
