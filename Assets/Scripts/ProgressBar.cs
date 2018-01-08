@@ -8,8 +8,22 @@ public class ProgressBar : MonoBehaviour {
     public Image timer;
     public float rate;
 
+    private bool running = false;
+
+    public void StartProgressBar()
+    {
+        running = true;
+    }
+
+    public void ResetProgressBar()
+    {
+        running = false;
+        timer.fillAmount = 1f;
+    }
+
     void Update()
     {
-        timer.fillAmount -= (Time.deltaTime / rate);
+        if (running)
+            timer.fillAmount -= (Time.deltaTime / rate);
     }
 }

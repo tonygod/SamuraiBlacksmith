@@ -35,6 +35,12 @@ public class StrikePointSpawner : MonoBehaviour
     public Text hitText;
     public Text missText;
 
+    public GameObject anvil;
+    public GameObject scrollStartUI;
+    public GameObject scrollEndUI;
+    public Text qualityText;
+    public Text customerText;
+
     private GameObject thisWeapon;
 
     private GameObject lastSpawned;
@@ -52,10 +58,12 @@ public class StrikePointSpawner : MonoBehaviour
     private void Awake()
     {
         wSel = GetComponent<WeaponSelector>();
+        anvil.SetActive(false);
     }
 
-    public void Start()
+    public void StartGame()
     {
+        anvil.SetActive(true);
         StartNewWeapon();
         StartSpawning();
     }
@@ -135,8 +143,12 @@ public class StrikePointSpawner : MonoBehaviour
 
     private void EvaluateQuality()
     {
-        float quality = (float)hits / (float)misses * 100;
+        float quality = Mathf.Round((float)hits / (float)numberOfStrikes * 100);
         Debug.Log("Final weapon quality: " + quality);
+        qualityText.text = "Quality: " + quality + "%";
+        scrollEndUI.SetActive(true);
+        thisWeapon.SetActive(false);
+        anvil.SetActive(false);
     }
 
 

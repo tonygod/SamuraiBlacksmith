@@ -7,7 +7,7 @@ public class WeaponSelector : MonoBehaviour {
 
     public Weapon SelectRandomWeapon()
     {
-        int i = Random.Range(0, weapons.Length - 1);
+        int i = Random.Range(0, weapons.Length);
         Debug.Log("Selected weapon: " + weapons[i].name);
         return weapons[i];
     }

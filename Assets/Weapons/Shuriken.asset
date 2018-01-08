@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 762e379d52df441b5bc89bf2ed6bfe57, type: 3}
-  m_Name: Katana
+  m_Name: Shuriken
   m_EditorClassIdentifier: 
-  stage1: {fileID: 1464251074147422, guid: e53c76a3aede34fd59e8273879df0e34, type: 2}
-  stage2: {fileID: 1723405276583666, guid: 0ee84ed3bbb00497a907eee486d2de15, type: 2}
-  stage3: {fileID: 1861737709472204, guid: 10854c6d57c1746c0a0ce0a4817bf5bd, type: 2}
+  stage1: {fileID: 1637254848231574, guid: f0fc94666f5be487b868f7675cb7f5dc, type: 2}
+  stage2: {fileID: 1596652843901568, guid: 325a3648601fb4fad9a63b8cf1ab9045, type: 2}
+  stage3: {fileID: 1400317349454392, guid: 1d0585470513443d3ab12ff48cac8387, type: 2}
