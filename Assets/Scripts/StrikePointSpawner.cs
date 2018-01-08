@@ -5,22 +5,33 @@ using UnityEngine;
 public class StrikePointSpawner : MonoBehaviour
 {
 
+    [Header("Prefabs")]
     public GameObject strikePointPrefab;
     public GameObject strikeFXPrefab;
 
+    [Header("Weapon")]
     public Transform weaponTransform;
     public GameObject weaponStage1;
     public GameObject weaponStage2;
     public GameObject weaponStage3;
 
-    public float spawnRate = 1.0f; // in seconds
+    [Space]
+    [Header("Spawn Rates")]
+    public float spawnRate1 = 1.5f;
+    public float spawnRate2 = 1.0f;
+    public float spawnRate3 = 0.75f;
+
+    [Space]
+    [Header("Spawn Boundaries")]
     public float minX = -0.5f;
     public float maxX = 0.5f;
     public float minZ = -0.5f;
     public float maxZ = 0.5f;
     public float yPosition = 0.5f;
 
+    [Space]
     public int numberOfStrikes = 30;
+    public ProgressBar progressBar;
 
     private GameObject weapon;
 
@@ -53,6 +64,10 @@ public class StrikePointSpawner : MonoBehaviour
         misses = 0;
         skips = 0;
         weaponStage = weaponStages.phase1;
+        float strikes = numberOfStrikes / 3;
+        float totalTime = spawnRate1 * strikes + spawnRate2 * strikes + spawnRate3 * strikes;
+        Debug.Log("totalTime=" + totalTime);
+        progressBar.rate = totalTime;
         StartCoroutine(SpawnStrikePoint());
     }
 
@@ -60,6 +75,7 @@ public class StrikePointSpawner : MonoBehaviour
     IEnumerator SpawnStrikePoint()
     {
         strikesRemaining = numberOfStrikes;
+        float spawnRate = spawnRate1;
 
         while (strikesRemaining >= 0)
         {
@@ -68,7 +84,12 @@ public class StrikePointSpawner : MonoBehaviour
             Vector3 randPosition = new Vector3(x, yPosition, z);
             lastSpawned = Instantiate(strikePointPrefab, randPosition, Quaternion.identity);
 
+            if (weaponStage == weaponStages.phase2)
+                spawnRate = spawnRate2;
+            else if (weaponStage == weaponStages.phase3)
+                spawnRate = spawnRate3;
             yield return new WaitForSeconds(spawnRate);
+
             if (lastSpawned)
             {
                 Debug.Log("Player SKIPPED last StrikePoint");
