@@ -29,6 +29,11 @@ public class StrikePointSpawner : MonoBehaviour
     public float yPosition = 0.5f;
 
     [Space]
+    [Header("Sounds")]
+    public AudioClip missSound;
+    public AudioClip hitSound;
+
+    [Space]
     public int numberOfStrikes = 30;
     public ProgressBar progressBar;
 
@@ -48,16 +53,20 @@ public class StrikePointSpawner : MonoBehaviour
 
     private weaponStages weaponStage;
     private WeaponSelector wSel;
+    private AudioSource sounds;
 
     private void Awake()
     {
         wSel = GetComponent<WeaponSelector>();
+        sounds = GetComponent<AudioSource>();
     }
 
     public void Start()
     {
         StartNewWeapon();
         StartSpawning();
+
+        AudioSource audio = GetComponent<AudioSource>();
     }
 
     private void StartNewWeapon()
@@ -159,6 +168,8 @@ public class StrikePointSpawner : MonoBehaviour
                     // progress bar penalty
                     misses++;
                     missText.text = misses.ToString();
+                    sounds.clip = missSound;
+                    sounds.Play();
                 }
             }
         }
@@ -174,11 +185,12 @@ public class StrikePointSpawner : MonoBehaviour
         // no progress bar penalty
         hits++;
         hitText.text = hits.ToString();
+        sounds.clip = hitSound;
+        sounds.Play();
 
     }
 
-
-    private void ShowSparks(Vector3 position)
+private void ShowSparks(Vector3 position)
     {
         GameObject fx = Instantiate(strikeFXPrefab, position, Quaternion.identity);
         Destroy(fx, 2.0f);
