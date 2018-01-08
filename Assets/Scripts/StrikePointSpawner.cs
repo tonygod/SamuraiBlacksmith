@@ -36,20 +36,53 @@ public class StrikePointSpawner : MonoBehaviour
     {
         strikesRemaining = numberOfStrikes;
 
-        while (strikesRemaining > 0)
+        while (strikesRemaining >= 0)
         {
-            yield return new WaitForSeconds(spawnRate);
-            if (lastSpawned)
-            {
-                Debug.Log("Player missed last StrikePoint");
-                DestroyObject(lastSpawned);
-            }
-
             float x = Random.Range(minX, maxX);
             float y = Random.Range(minY, maxY);
             Vector3 randPosition = new Vector3(x, y, zPosition);
             lastSpawned = Instantiate(strikePointPrefab, randPosition, Quaternion.identity);
+
+            yield return new WaitForSeconds(spawnRate);
+            if (lastSpawned)
+            {
+                Debug.Log("Player SKIPPED last StrikePoint");
+                DestroyObject(lastSpawned);
+                // progress bar penalty
+            }
             strikesRemaining--;
         }
+    }
+
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                if (hit.collider.gameObject.CompareTag("StrikePoint"))
+                {
+                    PlayerStrike();
+                }
+                else
+                {
+                    Debug.Log("Player MISSED last StrikePoint");
+                    // progress bar penalty
+                }
+            }
+        }
+    }
+
+
+    public void PlayerStrike()
+    {
+        Destroy(lastSpawned);
+        lastSpawned = null;
+        Debug.Log("Player HIT last StrikePoint");
+        // no progress bar penalty
     }
 }
