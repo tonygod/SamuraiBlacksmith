@@ -352,12 +352,7 @@ MonoBehaviour:
   strikeFXPrefab: {fileID: 1174436350745446, guid: 7c538dac42bea43a680a0b52dca41118,
     type: 2}
   weaponTransform: {fileID: 1896951557}
-  weaponStage1: {fileID: 1637254848231574, guid: f0fc94666f5be487b868f7675cb7f5dc,
-    type: 2}
-  weaponStage2: {fileID: 1723405276583666, guid: 0ee84ed3bbb00497a907eee486d2de15,
-    type: 2}
-  weaponStage3: {fileID: 1861737709472204, guid: 10854c6d57c1746c0a0ce0a4817bf5bd,
-    type: 2}
+  weapon: {fileID: 11400000, guid: a08cb52ab2be446a6af00096a9435e2e, type: 2}
   spawnRate1: 1
   spawnRate2: 0.85
   spawnRate3: 0.75
@@ -368,6 +363,8 @@ MonoBehaviour:
   yPosition: 0.15
   numberOfStrikes: 30
   progressBar: {fileID: 612021911}
+  hitText: {fileID: 0}
+  missText: {fileID: 0}
 --- !u!4 &1002569138
 Transform:
   m_ObjectHideFlags: 0

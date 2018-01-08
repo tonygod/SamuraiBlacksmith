@@ -12,9 +12,7 @@ public class StrikePointSpawner : MonoBehaviour
 
     [Header("Weapon")]
     public Transform weaponTransform;
-    public GameObject weaponStage1;
-    public GameObject weaponStage2;
-    public GameObject weaponStage3;
+    public Weapon weapon;
 
     [Space]
     [Header("Spawn Rates")]
@@ -37,7 +35,7 @@ public class StrikePointSpawner : MonoBehaviour
     public Text hitText;
     public Text missText;
 
-    private GameObject weapon;
+    private GameObject thisWeapon;
 
     private GameObject lastSpawned;
     private int strikesRemaining;
@@ -49,6 +47,12 @@ public class StrikePointSpawner : MonoBehaviour
     private enum weaponStages { phase1, phase2, phase3 }
 
     private weaponStages weaponStage;
+    private WeaponSelector wSel;
+
+    private void Awake()
+    {
+        wSel = GetComponent<WeaponSelector>();
+    }
 
     public void Start()
     {
@@ -58,7 +62,8 @@ public class StrikePointSpawner : MonoBehaviour
 
     private void StartNewWeapon()
     {
-        weapon = Instantiate(weaponStage1, weaponTransform.position, weaponTransform.rotation);
+        weapon = wSel.SelectRandomWeapon();
+        thisWeapon = Instantiate(weapon.stage1, weaponTransform.position, weaponTransform.rotation);
     }
 
 
@@ -85,7 +90,7 @@ public class StrikePointSpawner : MonoBehaviour
         strikesRemaining = numberOfStrikes;
         float spawnRate = spawnRate1;
 
-        while (strikesRemaining >= 0)
+        while (strikesRemaining > 0)
         {
             float x = Random.Range(minX, maxX);
             float z = Random.Range(minZ, maxZ);
@@ -112,17 +117,26 @@ public class StrikePointSpawner : MonoBehaviour
             Debug.Log("pctLeft=" + pctLeft);
             if ( pctLeft < 33f && weaponStage == weaponStages.phase2 )
             {
-                Destroy(weapon);
+                Destroy(thisWeapon);
                 weaponStage = weaponStages.phase3;
-                weapon = Instantiate(weaponStage3, weaponTransform.position, weaponTransform.rotation);
+                thisWeapon = Instantiate(weapon.stage3, weaponTransform.position, weaponTransform.rotation);
             }
             else if ( pctLeft < 66f && weaponStage == weaponStages.phase1 )
             {
-                Destroy(weapon);
+                Destroy(thisWeapon);
                 weaponStage = weaponStages.phase2;
-                weapon = Instantiate(weaponStage2, weaponTransform.position, weaponTransform.rotation);
+                thisWeapon = Instantiate(weapon.stage2, weaponTransform.position, weaponTransform.rotation);
             }
         }
+
+        EvaluateQuality();
+    }
+
+
+    private void EvaluateQuality()
+    {
+        float quality = (float)hits / (float)misses * 100;
+        Debug.Log("Final weapon quality: " + quality);
     }
 
 
