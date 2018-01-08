@@ -1273,7 +1273,7 @@ MonoBehaviour:
   maxZ: 0.2
   yPosition: 0.15
   numberOfStrikes: 30
-  progressBar: {fileID: 0}
+  progressBar: {fileID: 1705666444}
   hitText: {fileID: 664457883}
   missText: {fileID: 1504013051}
 --- !u!4 &1322118082
