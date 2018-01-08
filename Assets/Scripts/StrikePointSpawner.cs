@@ -29,6 +29,11 @@ public class StrikePointSpawner : MonoBehaviour
     public float yPosition = 0.5f;
 
     [Space]
+    [Header("Sounds")]
+    public AudioClip missSound;
+    public AudioClip hitSound;
+
+    [Space]
     public int numberOfStrikes = 30;
     public ProgressBar progressBar;
 
@@ -54,11 +59,13 @@ public class StrikePointSpawner : MonoBehaviour
 
     private weaponStages weaponStage;
     private WeaponSelector wSel;
+    private AudioSource sounds;
 
     private void Awake()
     {
         wSel = GetComponent<WeaponSelector>();
         anvil.SetActive(false);
+        sounds = GetComponent<AudioSource>();
     }
 
     public void StartGame()
@@ -66,6 +73,8 @@ public class StrikePointSpawner : MonoBehaviour
         anvil.SetActive(true);
         StartNewWeapon();
         StartSpawning();
+
+        AudioSource audio = GetComponent<AudioSource>();
     }
 
     private void StartNewWeapon()
@@ -171,6 +180,8 @@ public class StrikePointSpawner : MonoBehaviour
                     // progress bar penalty
                     misses++;
                     missText.text = misses.ToString();
+                    sounds.clip = missSound;
+                    sounds.Play();
                 }
             }
         }
@@ -186,6 +197,8 @@ public class StrikePointSpawner : MonoBehaviour
         // no progress bar penalty
         hits++;
         hitText.text = hits.ToString();
+        sounds.clip = hitSound;
+        sounds.Play();
 
     }
 
