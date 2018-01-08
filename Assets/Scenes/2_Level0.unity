@@ -204,7 +204,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 612021912}
+<<<<<<< HEAD
+  rate: 31
+=======
   rate: 30
+>>>>>>> master
 --- !u!114 &612021912
 MonoBehaviour:
   m_ObjectHideFlags: 0

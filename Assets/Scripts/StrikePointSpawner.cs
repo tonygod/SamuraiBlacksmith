@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StrikePointSpawner : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class StrikePointSpawner : MonoBehaviour
     public int numberOfStrikes = 30;
     public ProgressBar progressBar;
 
+    public Text hitText;
+    public Text missText;
+
     private GameObject weapon;
 
     private GameObject lastSpawned;
@@ -63,6 +67,10 @@ public class StrikePointSpawner : MonoBehaviour
         hits = 0;
         misses = 0;
         skips = 0;
+
+        hitText.text = hits.ToString();
+        missText.text = misses.ToString();
+
         weaponStage = weaponStages.phase1;
         float strikes = numberOfStrikes / 3;
         float totalTime = spawnRate1 * strikes + spawnRate2 * strikes + spawnRate3 * strikes;
@@ -95,6 +103,8 @@ public class StrikePointSpawner : MonoBehaviour
                 Debug.Log("Player SKIPPED last StrikePoint");
                 DestroyObject(lastSpawned);
                 skips++;
+                misses++;
+                missText.text = misses.ToString();
                 // progress bar penalty
             }
             strikesRemaining--;
@@ -134,6 +144,7 @@ public class StrikePointSpawner : MonoBehaviour
                     Debug.Log("Player MISSED last StrikePoint");
                     // progress bar penalty
                     misses++;
+                    missText.text = misses.ToString();
                 }
             }
         }
@@ -148,6 +159,8 @@ public class StrikePointSpawner : MonoBehaviour
         Debug.Log("Player HIT last StrikePoint");
         // no progress bar penalty
         hits++;
+        hitText.text = hits.ToString();
+
     }
 
 
