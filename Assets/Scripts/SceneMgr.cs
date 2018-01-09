@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneMgr : MonoBehaviour {
 
-    private static SceneMgr instance;
+    public static SceneMgr instance;
 
     public bool autoLoadScene = false;
     public string autoLoadSceneName;
@@ -27,6 +27,7 @@ public class SceneMgr : MonoBehaviour {
         {
             StartCoroutine(LoadSceneDelayed(autoLoadTime));
         }
+        DynamicGI.UpdateEnvironment();
     }
 
 

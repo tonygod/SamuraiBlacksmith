@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f93aa7a138d94703ab833cbbc72a7fc, type: 3}
+  m_Name: Ninja
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 564234502b5a34314990718c0eebaa41, type: 2}
+  idleSprite: {fileID: 21300000, guid: 8744a9051036142ddb437ecbda375943, type: 3}
+  joySprite: {fileID: 21300000, guid: 66cffdc772f07435da900e7f6a88cc8b, type: 3}
+  sadSprite: {fileID: 21300000, guid: 118d4a541c7304711a462e9f9ba8b565, type: 3}
+  needWeaponText: "\u201CKnock knock\u201D This new man is dressed all in black and
+    grey. His face is covered completely. Only his eyes are visible. \u201CExcuse
+    me. I am in the market for a special weapon. Shuriken with which I can fell my
+    opponents from afar. Several, in fact. When this is done, I shall reward you greatly.
+    I will return in two days. Please have my items ready by then.\u201D"
+  goodText: "You feel a tapping on your left shoulder. You spin about to see your
+    client standing before you. \u201CI have come for my package\u2026Not a man alive
+    can protect themselves from such a well forged blade. Not many can craft with
+    such precision.\u201D You hear a noise and turn. When you look back, the man is
+    gone."
+  okText: "You feel a tapping on your left shoulder. You spin about to see your client
+    standing before you. \u201CI have come for my package\u2026This is adequate work.
+    I will be able to make use of these, but I am far from impressed.\u201D You hear
+    a noise and turn. When you look back, the man is gone."
+  badText: "You feel a tapping on your left shoulder. You spin about to see your client
+    standing before you. \u201CI have come for my package\u2026This is what you have
+    to offer? The quality is\u2026 unacceptable.\u201D"
+  scrollSprite: {fileID: 21300000, guid: d350e128cd61647da99ab13ebc0279ad, type: 3}

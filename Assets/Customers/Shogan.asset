@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f93aa7a138d94703ab833cbbc72a7fc, type: 3}
+  m_Name: Shogan
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: a08cb52ab2be446a6af00096a9435e2e, type: 2}
+  idleSprite: {fileID: 21300000, guid: 740b4fd51961f48ff88c2577c1e2c08b, type: 3}
+  joySprite: {fileID: 21300000, guid: 54fd187e055fa473caa0b59368c12f7c, type: 3}
+  sadSprite: {fileID: 21300000, guid: 4f8e94e560a9e451788099249195fc56, type: 3}
+  needWeaponText: "\"Knock knock.\u201D The distinctive pounding of a metal glove
+    on wood precedes the entrance of a large armored man through the door to your
+    shop. \u201CGood day, Blacksmith. My Katana was destroyed in my last battle. I
+    require another with all due haste. I will return in 10 days time.\u201D"
+  goodText: "\u201CKnock knock.\u201D You turn to see your client, filled to the brim
+    with anticipation. \u201CExcellent! This is exactly what I wanted. I couldn\u2019t
+    have hoped for a better sword. The samurai turns and departs. You feel a tang
+    of sorrow, for you know you will never see this man again. Many soldiers had come
+    before, and many will come again. Such is the nature of your business."
+  okText: "\u201CKnock knock.\u201D You turn to see your client, filled to the brim
+    with anticipation. \u201CThis will have to do. I must confess that the design
+    leaves something to be desired. The samurai turns and departs. You let out a sigh
+    of relief, for you know you will never see this man again. Many soldiers had come
+    before, and many will come again. Such is the nature of your business."
+  badText: "\u201CKnock knock.\u201D You turn to see your client, filled to the brim
+    with anticipation. \u201CSeriously? Are you sure this is mine? Are you quite positive
+    this\u2026 thing\u2026 wasn\u2019t ordered by some lowly, half-drunk tavern guard?
+    Though it saddens me, my honor and yours demands your life be forfeit. May you
+    find your peace in the next life.\u201D"
+  scrollSprite: {fileID: 21300000, guid: 466dc14cad73a4b1899e4ee54db5b192, type: 3}
